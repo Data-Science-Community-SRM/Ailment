@@ -55,10 +55,9 @@ def malaria():
 				prediction = pr.pred(image.filename, 'm')
 				
 		return render_template('public/malaria.html', text=text, prediction=prediction, filename=image.filename)
+		#os.remove(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))
 
 	return render_template('public/malaria.html', filename='')
-
-# 
 
 
 @A.route('/pneumonia', methods=['GET', 'POST'])
@@ -77,6 +76,8 @@ def pneumonia():
 				prediction = pr.pred(image.filename, 'p')
 				
 		return render_template('public/pneumonia.html', text=text, prediction=prediction, filename=image.filename)
+		#os.remove(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))
+
 	return render_template('public/pneumonia.html', filename='')
 
 

@@ -31,18 +31,17 @@
         </div>
     </div>
 
-    <div class="row" style="text-align: right;">
+    <div class="row" style="text-align: center;">
         <div class="col">
-            <img style="max-width: 400px; margin-top: 30px; margin-right: 50px;" src="{{ url_for('static', filename='img/uploads/'+filename) }}" alt="">
+            <img style="max-width: 400px; margin-top: 50px;" src="{{ url_for('static', filename='img/uploads/'+filename) }}" alt="">
+
+            <p style="margin-top: 30px;">
+                {{ prediction }}
+            </p>
         </div>
         
     </div>
-    <div class="col" style="text-align: left;">
-        <p>
-            {{ prediction }}
-        </p>
-
-    </div>
+  
 </div>
 
 
