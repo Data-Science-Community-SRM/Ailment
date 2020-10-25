@@ -1,0 +1,49 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Pneumonia{% endblock title %}
+
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4>
+                Pneumonia Prediction using Lung X-ray Images
+            </h4>
+            <hr>
+
+            <form action="/pneumonia" method="POST" enctype="multipart/form-data">
+                
+                <div class="form-group">
+                    <label>Select Lung X-ray Image</label>
+                    <div class="custom-file">
+                        <input class='custom-file-input' type="file" name='image' id='image'>
+                        <label class='custom-file-label' for="image">Select Image...</label>
+                    </div>
+                </div>
+
+                <p>{{ text }}</p>
+
+                <button type="submit" class="btn btn-primary">Upload Image</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="row" style="text-align: right;">
+        <div class="col">
+            <img style="max-width: 400px; margin-top: 30px; margin-right: 50px;" src="{{ url_for('static', filename='img/uploads/'+filename) }}" alt="">
+        </div>
+        
+    </div>
+    <div class="col" style="text-align: left;">
+        <p>
+            {{ prediction }}
+        </p>
+
+    </div>
+</div>
+
+
+{% endblock main %}
