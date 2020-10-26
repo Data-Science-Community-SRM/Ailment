@@ -3,6 +3,7 @@ from flask import render_template, request, redirect
 from datetime import datetime
 import os
 import urllib
+from pathlib import Path
 #from werkzeug.utils import secure_filename
 import cv2
 import numpy as np
@@ -12,7 +13,7 @@ from Application import predict_image as pr
 def index():
 	return render_template('public/index.html')
 
-A.config['IMAGE_UPLOADS'] = '/home/shinjinee/Documents/Python Programs/DiseasePredictor/FlaskApp/Application/static/img/uploads'
+A.config['IMAGE_UPLOADS'] = str(Path(__file__).parent.absolute())+'/static/img/uploads'
 A.config['ALLOWED_EXTENSIONS'] = ['PNG', 'JPG', 'JPEG']
 
 def allowed_files(file):
@@ -24,14 +25,14 @@ def allowed_files(file):
 	else:
 		return False
 
-def verify(img, text):
+def verify(img, wrapper):
 
 	if img.filename == '':
-		text = 'Image must have a filename'
+		wrapper[0] = 'Image must have a filename'
 		return False
 
 	if not allowed_files(img.filename):
-		text = 'Invalid file type (valid: png, jpg, jpeg)'
+		wrapper[0] = 'Invalid file type (valid: png, jpg, jpeg)'
 		return False
 
 	else:
@@ -42,17 +43,21 @@ def verify(img, text):
 def malaria():
 	
 	text = ''
+	prediction = ''
 	if request.method == 'POST':
 
 		if request.files:
 			image = request.files['image']
+			wrapper = [text]
 
-			if verify(image, text):
+			if verify(image, wrapper):
 
 				image.save(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))				
 				text = 'Image Uploaded: '+image.filename
 
 				prediction = pr.pred(image.filename, 'm')
+			else:
+				text = wrapper[0]
 				
 		return render_template('public/malaria.html', text=text, prediction=prediction, filename=image.filename)
 		#os.remove(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))
@@ -63,17 +68,21 @@ def malaria():
 @A.route('/pneumonia', methods=['GET', 'POST'])
 def pneumonia():
 	text = ''
+	prediction = ''
 	if request.method == 'POST':
 
 		if request.files:
 			image = request.files['image']
+			wrapper = [text]
 
-			if verify(image, text):
+			if verify(image, wrapper):
 
 				image.save(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))				
 				text = 'Image Uploaded: '+image.filename
 
 				prediction = pr.pred(image.filename, 'p')
+			else:
+				text = wrapper[0]
 				
 		return render_template('public/pneumonia.html', text=text, prediction=prediction, filename=image.filename)
 		#os.remove(os.path.join(A.config["IMAGE_UPLOADS"], image.filename))
@@ -90,14 +99,3 @@ def cardio():
 @A.route('/liver', methods=['GET', 'POST'])
 def liver():
 	return render_template('public/liver.html')
-
-
-
-#image.save(os.path.join(A.config['IMAGE_UPLOADS'], file))
-#mongo.save_file(image.filename, image)
-#image = mongo.send_file(image.filename)
-
-#from flask_pymongo import PyMongo
-
-#A.config['MONGO_URI'] = 'mongodb+srv://shinjinee:'+urllib.parse.quote('Jins@mongo04122000')+'@diseasepredictor.nxyfe.mongodb.net/diseasePredictor?retryWrites=true&w=majority'
-#mongo = PyMongo(A)

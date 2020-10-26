@@ -2,7 +2,6 @@
 
 {% block title %}Malaria{% endblock title %}
 
-
 {% block main %}
 
 <div class="container">
@@ -35,7 +34,6 @@
         <div class="col">
             <img style="max-width: 400px; margin-top: 50px;" src="{{ url_for('static', filename='img/uploads/'+filename) }}" alt="">
 
-
             <p style="margin-top: 30px;">
                 {{ prediction }}
             </p>
@@ -43,6 +41,5 @@
         
     </div>
 </div>
-
 
 {% endblock main %}

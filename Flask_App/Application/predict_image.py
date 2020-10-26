@@ -2,19 +2,16 @@ import tensorflow as tf
 from keras.preprocessing import image
 import cv2
 import numpy as np
+from pathlib import Path
 
 models = {
     'm': 'Application/models/malaria.h5',
     'p': 'Application/models/pneumonia.h5'}
 
-disease = {
-    'm': 'Malaria',
-    'p': 'Pneumonia'}
-
 def pred (filename, x):
 
     model=tf.keras.models.load_model(models[x]) 
-    img = cv2.imread('/home/shinjinee/Documents/Python Programs/DiseasePredictor/FlaskApp/Application/static/img/uploads/'+filename)
+    img = cv2.imread(str(Path(__file__).parent.absolute())+'/static/img/uploads/'+filename)
 
     if (x=='p'):
         resized = cv2.resize(img, (150,150), interpolation = cv2.INTER_AREA)	#resize
