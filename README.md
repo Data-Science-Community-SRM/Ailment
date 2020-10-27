@@ -60,3 +60,26 @@ flask run
 
 - The [Malaria Cell Images Dataset](https://www.kaggle.com/iarunava/cell-images-for-detecting-malaria) dataset from [Kaggle](https://www.kaggle.com/) has been used to train this model.
 - It was trained using the public Kaggle notebook [Detecting Malaria (val accuracy > 97%)](https://www.kaggle.com/harshel7/detecting-malaria-val-accuracy-97).
+
+<br>
+
+## Contribute
+
+Thanks for taking the time to contribute!
+
+The following is a set of guidelines for contributing to Disease Predictor. Please check out the [Contribute.md]. These are just guidelines, not rules, so use your best judgement and feel free to propose changes to this document in a pull request.
+If you have any questions, open an issue.
+
+<br>
+
+## License
+
+MIT © Data Science Community SRM
+
+This project is licensed under the MIT License - see the [License.md](https://github.com/Data-Science-Community-SRM/disease-predictor/blob/master/LICENSE) file for details
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+<p align="center">
+	Made with :heart: by <a href="https://dscommunity.in">DS Community SRM</a>
+</p>
