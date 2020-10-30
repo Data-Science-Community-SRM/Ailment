@@ -20,9 +20,7 @@ numpydoc==0.7.0
 opencv-contrib-python==4.2.0.34
 opencv-python==4.4.0.44
 pandas==1.0.5
-python-apt==2.0.0+ubuntu0.20.4.1
 python-dateutil==2.7.3
-python-debian===0.1.36ubuntu1
 python-gnupg==0.4.5
 python-mimeparse==1.6.0
 python-snappy==0.5.3
