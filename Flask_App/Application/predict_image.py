@@ -1,5 +1,5 @@
 import tensorflow as tf
-from keras.preprocessing import image
+from keras.utils import img_to_array
 import cv2
 import numpy as np
 from pathlib import Path
@@ -17,7 +17,7 @@ def pred (filename, x):
         resized = cv2.resize(img, (150,150), interpolation = cv2.INTER_AREA)	#resize
         resized = resized/255	#normalize
 
-        x = image.img_to_array(resized)
+        x = img_to_array(resized)
         x = np.expand_dims(x, axis=0)
 
         final_img = np.vstack([x])
@@ -32,7 +32,7 @@ def pred (filename, x):
         resized = cv2.resize(img, (50,50), interpolation = cv2.INTER_AREA)	#resize
         resized = resized/255	#normalize
 
-        x = image.img_to_array(resized)
+        x = img_to_array(resized)
         x = np.expand_dims(x, axis=0)
 
         class_name = ['Malaria not detected', 'Malaria detected']
